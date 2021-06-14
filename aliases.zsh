@@ -1,3 +1,4 @@
 alias myip="curl http://ipecho.net/plain; echo"
 alias aliases="vim ~/src/git/dotfiles/aliases.zsh"
-alias c="clear"
+alias c=clear
+alias top=htop
