@@ -10,11 +10,3 @@ ocd() {
   echo "headed to: ${directory_path}"
   cd "${directory_path}" || return
 }
-
-main() {
-  ocd "$1"
-}
-
-#-----------------------------------------------------------------
-
-main "$1"
