@@ -1,0 +1,20 @@
+#!/bin/sh
+
+# when i give it the path to an existing file
+# it will cd me to the directory that contains that file
+# this has to be sourced in your ~/.bashrc to work
+
+ocd() {
+  file_path="$1"
+  directory_path=$(echo "${file_path}" | sed 's,/[^\/]*$,,')
+  echo "headed to: ${directory_path}"
+  cd "${directory_path}" || return
+}
+
+main() {
+  open_containing_directory "$1"
+}
+
+#-----------------------------------------------------------------
+
+main "$1"
