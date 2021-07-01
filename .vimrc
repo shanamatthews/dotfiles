@@ -1,4 +1,3 @@
-
 " An example for a vimrc file.
 "
 " Maintainer:	Bram Moolenaar <Bram@vim.org>
@@ -57,6 +56,17 @@ endif
 " Shana's additions
 set number
 
+" prevents truncated yanks, deletes, etc
+" increase the length of the vim buffer
+set viminfo='20,<1000,s1000
+
 " incremental search and case insensitive
 set incsearch
 set ic
+set undodir=~/.vim/.undo//
+set backupdir=~/.vim/.backup//
+set directory=~/.vim/.swp//
+syntax enable
+
+autocmd FileType javascript setlocal equalprg=js-beautify\ --stdin
+autocmd FileType sh set commentstring=#\ %s
