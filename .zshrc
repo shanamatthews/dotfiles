@@ -106,3 +106,5 @@ source $ZSH/oh-my-zsh.sh
 path+=($HOME/.local/bin)
 path+=($HOME/.local/bin/scripts)
 export PATH
+
+. $HOME/.local/bin/scripts/ocd
