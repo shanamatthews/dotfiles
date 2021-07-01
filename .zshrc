@@ -101,3 +101,8 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# Append stuff to path
+path+=($HOME/.local/bin)
+path+=($HOME/.local/bin/scripts)
+export PATH
