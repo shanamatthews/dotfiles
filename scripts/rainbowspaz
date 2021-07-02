@@ -14,7 +14,7 @@ randcolorrgb() {
 }
 
 randcolorbuiltin() {
-  printf "\e[$(((RANDOM%8)+30))m" # take a random # between 0 and 255
+  printf "\e[1;$(((RANDOM%8)+30))m" # take a random # between 0 and 255
 }
 
 # gotta escape the `%` chars since we're using them in printf
