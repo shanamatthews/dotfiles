@@ -13,6 +13,10 @@ randcolorrgb() {
   printf "\e[38;2;$((RANDOM%255));$((RANDOM%255));$((RANDOM%255))m" # take a random rgb color
 }
 
+randcolorbuiltin() {
+  printf "\e[$(((RANDOM%8)+30))m" # take a random # between 0 and 255
+}
+
 # gotta escape the `%` chars since we're using them in printf
 # otherwise everything is fine escape-wise
 rainbow='
@@ -35,6 +39,6 @@ rainbow='
 '
 
 while true; do
-  printf "${clrscn}$(randcolorrgb)${rainbow}${x}\n"
+  printf "${clrscn}$(randcolorbuiltin)${rainbow}${x}\n"
   sleep .05
 done
