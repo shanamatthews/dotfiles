@@ -6,7 +6,8 @@
 
 ocd() {
   file_path="$1"
-  directory_path=$(echo "${file_path}" | sed 's,/[^\/]*$,,')
+  # we are very cool and we are doing this with parameter expansion instead of sed
+  directory_path="${file_path%/*}" # $(echo "${file_path}" | sed 's,/[^\/]*$,,')
   echo "headed to: ${directory_path}"
   cd "${directory_path}" || return
 }
