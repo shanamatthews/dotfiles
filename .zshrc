@@ -108,3 +108,4 @@ path+=($HOME/.local/bin/scripts)
 export PATH
 
 . $HOME/.local/bin/scripts/ocd
+. $HOME/.local/bin/scripts/clear
