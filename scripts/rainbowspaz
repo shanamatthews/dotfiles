@@ -1,0 +1,40 @@
+#!/bin/bash
+
+purple="\e[35m"
+red="\e[31m"
+x="\e[0m"
+clrscn="\e[H\e[2J"
+
+randcolor255() {
+  printf "\e[38;5;$((RANDOM%255))m" # take a random # between 0 and 255
+}
+
+randcolorrgb() {
+  printf "\e[38;2;$((RANDOM%255));$((RANDOM%255));$((RANDOM%255))m" # take a random rgb color
+}
+
+# gotta escape the `%` chars since we're using them in printf
+# otherwise everything is fine escape-wise
+rainbow='
+                 .##@@&&&@@##.
+              ,##@&::%%&&%%%%::&@##.
+             #@&:%%%%000000000%%%%:&@#
+           #@&:%%00           00%%:&@#
+          #@&:%%0               0%%:&@#
+         #@&:%%0                 0%%:&@#
+        #@&:%%0                   0%%:&@#
+        #@&:%%0                   0%%:&@#
+        "" " "                     " " ""
+      _oOoOoOo_                   .-.-.
+     (oOoOoOoOo)                 (  :  )
+      )`"""""`(                .-.`. .".-.
+     /         \              (_  ".Y."  _)
+    | #         |             (   ."|".   )
+    \           /              "-"  |  "-"
+     `=========`
+'
+
+while true; do
+  printf "${clrscn}$(randcolorrgb)${rainbow}${x}\n"
+  sleep .05
+done
