@@ -109,3 +109,24 @@ export PATH
 
 . $HOME/.local/bin/scripts/ocd
 . $HOME/.local/bin/scripts/clear
+
+# --------------------------- colors in manpages ------------------------------
+# this is how we get colored man pages oooooh so fancy
+# no one honestly knows what most of this does but it does make it pretty
+# these variables are designed so that man will work with them
+
+if test -x /usr/bin/lesspipe; then
+  export LESSOPEN="| /usr/bin/lesspipe %s";
+  export LESSCLOSE="/usr/bin/lesspipe %s %s";
+fi
+
+export LESS_TERMCAP_mb="[3m"   # magenta
+export LESS_TERMCAP_md="[33m"  # yellow
+export LESS_TERMCAP_me=""
+export LESS_TERMCAP_se=""
+export LESS_TERMCAP_so="[34m"  # blue
+export LESS_TERMCAP_ue=""
+export LESS_TERMCAP_us="[4m"   # underline
+
+# this is broken
+# export MANPAGER="less -R --use-color -Dd+r -Du+b"
