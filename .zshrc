@@ -120,7 +120,7 @@ if test -x /usr/bin/lesspipe; then
   export LESSCLOSE="/usr/bin/lesspipe %s %s";
 fi
 
-export LESS_TERMCAP_mb="[3m"   # magenta
+export LESS_TERMCAP_mb="[35m"   # magenta
 export LESS_TERMCAP_md="[33m"  # yellow
 export LESS_TERMCAP_me=""
 export LESS_TERMCAP_se=""
