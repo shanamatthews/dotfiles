@@ -1,8 +1,0 @@
-#!/bin/sh
-
-# clear with escape code
-# must be sourced in ~/.bashrc
-
-clear() {
-  printf "\e[H\e[2J"
-}

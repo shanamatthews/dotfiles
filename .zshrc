@@ -107,8 +107,8 @@ path+=($HOME/.local/bin)
 path+=($HOME/.local/bin/scripts)
 export PATH
 
+# ------------------------------ sourced scripts ------------------------------
 . $HOME/.local/bin/scripts/ocd
-. $HOME/.local/bin/scripts/clear
 
 # --------------------------- colors in manpages ------------------------------
 # this is how we get colored man pages oooooh so fancy
