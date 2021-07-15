@@ -102,13 +102,14 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# Append stuff to path
+# ---------------------------------- my path ----------------------------------
 path+=($HOME/.local/bin)
 path+=($HOME/.local/bin/scripts)
 export PATH
 
 # ------------------------------ sourced scripts ------------------------------
 . $HOME/.local/bin/scripts/ocd
+. $HOME/.local/bin/scripts/cdtmp
 
 # --------------------------- colors in manpages ------------------------------
 # this is how we get colored man pages oooooh so fancy
@@ -130,3 +131,4 @@ export LESS_TERMCAP_us="[4m"   # underline
 
 # this is broken
 # export MANPAGER="less -R --use-color -Dd+r -Du+b"
+
