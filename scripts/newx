@@ -6,9 +6,11 @@ test ! -n "${1}" && echo "usage: newx <name>" && exit 1;
 path="${SCRIPTS}/${1}"
 
 if test -e "${path}"; then
-  read -p "${1} already exists. Edit? " yes
-  case "${yes}" in
-    y|yes|yep|yeah|ok|okay) exec vim "${path}"
+  echo "${1} already exists. Edit? "
+  read -r answer
+  case "${answer}" in
+    y|yes|yep|yeah|ok|okay) exec vim "${path}" ;;
+    *) echo "then use a unique name :P" ;;
   esac
   exit 0
 fi
