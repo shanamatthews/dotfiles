@@ -1,4 +1,4 @@
 #!/bin/bash
 
 # use (bash-specific) parameter expansion to replace all ":" with "\n"
-echo "${PATH//:/\\n}"
+echo -e "${PATH//:/\\n}"
