@@ -107,6 +107,8 @@ path+=($HOME/.local/bin)
 path+=($HOME/.local/bin/scripts)
 export PATH
 
+export SCRIPTS="$HOME/.local/bin/scripts"
+
 # ------------------------------ sourced scripts ------------------------------
 . $HOME/.local/bin/scripts/ocd
 . $HOME/.local/bin/scripts/cdtmp
