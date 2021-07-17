@@ -44,9 +44,13 @@ set viminfo='20,<1000,s1000
 " incremental search and case insensitive
 set incsearch
 set ic
+
 set undodir=~/.vim/.undo//
 set backupdir=~/.vim/.backup//
 set directory=~/.vim/.swp//
+
+set expandtab
+
 syntax enable
 
 autocmd FileType javascript setlocal equalprg=js-beautify\ --stdin
