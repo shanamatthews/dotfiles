@@ -1,21 +1,3 @@
-" An example for a vimrc file.
-"
-" Maintainer:	Bram Moolenaar <Bram@vim.org>
-" Last change:	2019 Dec 17
-"
-" To use it, copy it to
-"	       for Unix:  ~/.vimrc
-"	      for Amiga:  s:.vimrc
-"	 for MS-Windows:  $VIM\_vimrc
-"	      for Haiku:  ~/config/settings/vim/vimrc
-"	    for OpenVMS:  sys$login:.vimrc
-
-" When started as "evim", evim.vim will already have done these settings, bail
-" out.
-if v:progname =~? "evim"
-  finish
-endif
-
 " Get the defaults that most users want.
 source $VIMRUNTIME/defaults.vim
 
@@ -53,11 +35,10 @@ endif
 
 
 
-" Shana's additions
-set number
+" --------------------------------- shana's additions -------------------------------
 
-" prevents truncated yanks, deletes, etc
 " increase the length of the vim buffer
+" prevents truncated yanks, deletes, etc
 set viminfo='20,<1000,s1000
 
 " incremental search and case insensitive
@@ -70,3 +51,30 @@ syntax enable
 
 autocmd FileType javascript setlocal equalprg=js-beautify\ --stdin
 autocmd FileType sh set commentstring=#\ %s
+
+
+" ------------------------------- ex-compatible settings -----------------------------
+" activate line numbering
+set number
+
+" column and row position shown in bottom right
+set ruler
+
+" automatically indent lines
+set autoindent
+
+" automatically write files when multiple files open
+set autowrite
+
+" show command/insert mode
+set showmode
+
+" set tab size
+set tabstop=2
+
+" ignore case in regular expressions
+set ignorecase
+
+" highlight matching brackets/braces/parens
+set showmatch
+
