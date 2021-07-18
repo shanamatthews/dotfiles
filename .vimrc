@@ -1,12 +1,10 @@
-" ----------------------------- high-level behavior ---------------------------------
+" ----------------------------- vim settings!!! ---------------------------------
 " vi compatibility - ironically (??) this option is not compatible with vi :P
 " and is also kind of just a lie and actually supports lots of stuff vi doesn't
 " actually there's no point in turning this on because it's not compatible
 set nocompatible
 
-" increase the length of the vim buffer
-" prevents truncated yanks, deletes, etc
-set viminfo='20,<1000,s1000
+" ----------------------------- backups/saves ---------------------------------
 
 if has("vms")
   set nobackup		" do not keep a backup file, use versions instead
@@ -17,24 +15,39 @@ else
   endif
 endif
 
+set noswapfile " we don't need this annoying thing
+
 set undodir=~/.vim/.undo//
 set backupdir=~/.vim/.backup//
 set directory=~/.vim/.swp//
 
+" automatically write files when multiple files open
+set autowrite
+
+" Allow saving of files as sudo when I forgot to start vim using sudo.
+cmap w!! w !sudo tee > /dev/null %
+
+" ----------------------------- buffer, history ---------------------------------
+" increase the length of the vim buffer
+" prevents truncated yanks, deletes, etc
+set viminfo='20,<1000,s1000
+
 set history=200		" keep 200 lines of command line history
+
+" ----------------------------- menus, command displays ---------------------------------
 set showcmd		" display incomplete commands
 set wildmenu		" display completion matches in a status line
 
 set ttimeout		" time out for key codes
 set ttimeoutlen=100	" wait up to 100ms after Esc for special key
 
-" automatically write files when multiple files open
-set autowrite
-
 " show command/insert mode
 set showmode
 
-" ----------------------------- display ---------------------------------
+" this setting is stupid
+set norelativenumber
+
+" ----------------------------- text display ---------------------------------
 set display=lastline " show as much of last line as possible
 set scrolloff=5 " try to keep some buffer around the cursor
 
@@ -46,6 +59,11 @@ set ruler
 
 " highlight matching brackets/braces/parens
 set showmatch
+
+" ----------------------------- text wrap ---------------------------------
+set wrap
+set textwidth=80
+set formatoptions=tcq " this is the default, consider changing
 
 " ----------------------------- indenting ---------------------------------
 " automatically indent lines
@@ -70,6 +88,9 @@ set shiftwidth=2
 " makes it so you can delete your inserted spaces as if they were tabs
 set smarttab
 
+" Round indent to multiple of 'shiftwidth'
+set shiftround
+
 " ----------------------------- searching ---------------------------------
 " incremental search and case insensitive
 set incsearch
@@ -78,8 +99,14 @@ set ic
 " Switch on highlighting the last used search pattern.
 set hlsearch
 
-" ignore case in regular expressions
-set ignorecase
+
+set ignorecase " ignore case in regular expressions
+set smartcase  " exept when we've used a capital letter explicityly
+
+" Search mappings: These will make it so that going to the next one in a
+" search will center on the line it's found in.
+nnoremap n nzzzv
+nnoremap N Nzzzv 
 
 " ----------------------------- commands ---------------------------------
 " Allow backspacing over everything in insert mode.
@@ -92,7 +119,15 @@ map q: :q
 nnoremap Y y$
 
 " If I'm trying to use my mouse, let me use my damn mouse
-set mouse=a
+if has ('mouse')
+  set mouse=a
+endif
+
+" If linux then set ttymouse
+let s:uname = system("echo -n \"$(uname)\"")
+if !v:shell_error && s:uname == "Linux" && !has('nvim')
+  set ttymouse=xterm
+endif
 
 syntax enable
 let c_comment_strings=1 " I like highlighting strings inside C comments.
@@ -110,14 +145,6 @@ endif
 
 autocmd FileType javascript setlocal equalprg=js-beautify\ --stdin
 autocmd FileType sh set commentstring=#\ %s
-
-" Put these in an autocmd group, so that we can delete them easily.
-augroup vimrcEx
-  au!
-
-  " For all text files set 'textwidth' to 78 characters.
-  autocmd FileType text setlocal textwidth=78
-augroup END
 
 " ----------------------------- optional packages ---------------------------------
 
