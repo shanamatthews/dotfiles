@@ -1,4 +1,4 @@
-" ----------------------------- vim settings!!! ---------------------------------
+" ----------------------------- vim settings!!! --------------------------------
 " vi compatibility - ironically (??) this option is not compatible with vi :P
 " and is also kind of just a lie and actually supports lots of stuff vi doesn't
 " actually there's no point in turning this on because it's not compatible
@@ -7,108 +7,101 @@ set nocompatible
 " ----------------------------- backups/saves ---------------------------------
 
 if has("vms")
-  set nobackup		" do not keep a backup file, use versions instead
+  set nobackup		     " do not keep a backup file, use versions instead
 else
-  set backup		" keep a backup file (restore to previous version)
+  set backup		       " keep a backup file (restore to previous version)
   if has('persistent_undo')
-    set undofile	" keep an undo file (undo changes after closing)
+    set undofile	     " keep an undo file (undo changes after closing)
   endif
 endif
 
-set noswapfile " we don't need this annoying thing
+set noswapfile         " we don't need this annoying thing
 
 set undodir=~/.vim/.undo//
 set backupdir=~/.vim/.backup//
 set directory=~/.vim/.swp//
 
-" automatically write files when multiple files open
-set autowrite
+set autowrite          " automatically write files when multiple files open
 
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 cmap w!! w !sudo tee > /dev/null %
 
-" ----------------------------- buffer, history ---------------------------------
+" --------------------------------- buffer, history ---------------------------
+
 " increase the length of the vim buffer
 " prevents truncated yanks, deletes, etc
 set viminfo='20,<1000,s1000
 
-set history=200		" keep 200 lines of command line history
+set history=200		     " keep 200 lines of command line history
 
-" ----------------------------- menus, command displays ---------------------------------
-set showcmd		" display incomplete commands
-set wildmenu		" display completion matches in a status line
+" ----------------------------- menus, command displays ------------------------
 
-set ttimeout		" time out for key codes
-set ttimeoutlen=100	" wait up to 100ms after Esc for special key
+set showcmd		         " display incomplete commands
+set wildmenu		       " display completion matches in a status line
 
-" show command/insert mode
-set showmode
+set ttimeout		       " time out for key codes
+set ttimeoutlen=100	   " wait up to 100ms after Esc for special key
 
-" this setting is stupid
-set norelativenumber
+set showmode           " show command/insert mode
 
-" ----------------------------- text display ---------------------------------
-set display=lastline " show as much of last line as possible
-set scrolloff=5 " try to keep some buffer around the cursor
+set norelativenumber   " this setting is stupid
 
-" activate line numbering
-set number
+" ----------------------------- text display -----------------------------------
 
-" column and row position shown in bottom right
-set ruler
+set display=lastline   " show as much of last line as possible
+set scrolloff=5        " try to keep some buffer around the cursor
 
-" highlight matching brackets/braces/parens
-set showmatch
+set number             " activate line numbering
 
-" ----------------------------- text wrap ---------------------------------
+set ruler              " column and row position shown in bottom right
+
+set showmatch          " highlight matching brackets/braces/parens
+
+" ----------------------------- text wrap --------------------------------------
+
 set wrap
 set textwidth=80
-set formatoptions=tcq " this is the default, consider changing
+set formatoptions=tcq  " this is the default, consider changing
 
-" ----------------------------- indenting ---------------------------------
-" automatically indent lines
-set autoindent
+" ----------------------------- indenting --------------------------------------
 
-" set tab size
-set tabstop=2
+set autoindent         " automatically indent lines
+
+set tabstop=2          " set tab size
 
 " autoindenting is smart when starting a new line
 " not supported by all languages (maybe mostly just c)
 set smartindent
 
-" replace tabs with spaces
-set expandtab
+set expandtab          " replace tabs with spaces
 
 " I don't really know what this does, so leaving it off
 set softtabstop=0
 
-" this is for >> and <<
-set shiftwidth=2   
+set shiftwidth=2       " this is for >> and <<
 
 " makes it so you can delete your inserted spaces as if they were tabs
 set smarttab
 
-" Round indent to multiple of 'shiftwidth'
-set shiftround
+set shiftround         " Round indent to multiple of 'shiftwidth'
 
-" ----------------------------- searching ---------------------------------
-" incremental search and case insensitive
-set incsearch
-set ic
+" ----------------------------- searching --------------------------------------
 
-" Switch on highlighting the last used search pattern.
-set hlsearch
+set incsearch          " incremental search 
+set ic                 " and case insensitive
 
+set hlsearch           " Switch on highlighting the last used search pattern.
 
-set ignorecase " ignore case in regular expressions
-set smartcase  " exept when we've used a capital letter explicityly
+set ignorecase         " ignore case in regular expressions
+set smartcase          " exept when we've used a capital letter explicitly
 
 " Search mappings: These will make it so that going to the next one in a
 " search will center on the line it's found in.
 nnoremap n nzzzv
 nnoremap N Nzzzv 
 
-" ----------------------------- commands ---------------------------------
+" ----------------------------- commands ---------------------------------------
+
 " Allow backspacing over everything in insert mode.
 set backspace=indent,eol,start
 
@@ -141,12 +134,12 @@ if !exists(":DiffOrig")
 		  \ | wincmd p | diffthis
 endif
 
-" ----------------------------- filetype specifics ---------------------------------
+" ----------------------------- filetype specifics -----------------------------
 
 autocmd FileType javascript setlocal equalprg=js-beautify\ --stdin
 autocmd FileType sh set commentstring=#\ %s
 
-" ----------------------------- optional packages ---------------------------------
+" ----------------------------- optional packages ------------------------------
 
 " The matchit plugin makes the % command work better, but it is not backwards
 " compatible.
