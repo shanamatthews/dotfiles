@@ -1,4 +1,5 @@
 " ----------------------------- vim settings!!! --------------------------------
+
 " vi compatibility - ironically (??) this option is not compatible with vi :P
 " and is also kind of just a lie and actually supports lots of stuff vi doesn't
 " actually there's no point in turning this on because it's not compatible
@@ -21,7 +22,7 @@ set undodir=~/.vim/.undo//
 set backupdir=~/.vim/.backup//
 set directory=~/.vim/.swp//
 
-set autowrite          " automatically write files when multiple files open
+set autowrite          " automatically write files when multiple files opea
 
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 cmap w!! w !sudo tee > /dev/null %
@@ -133,6 +134,16 @@ if !exists(":DiffOrig")
   command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
 		  \ | wincmd p | diffthis
 endif
+
+" disable arrow keys BECAUSE I HATE MYSELF
+noremap <up> :echoerr "Be a good vimmer, use k"
+noremap <down> :echoerr "Be a good vimmer, use j"
+noremap <left> :echoerr "Be a good vimmer, use h"
+noremap <right> :echoerr "Be a good vimmer, use l"
+inoremap <up> <NOP>
+inoremap <down> <NOP>
+inoremap <left> <NOP>
+inoremap <right> <NOP>
 
 " ----------------------------- filetype specifics -----------------------------
 
