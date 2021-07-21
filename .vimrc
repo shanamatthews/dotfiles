@@ -108,7 +108,7 @@ set backspace=indent,eol,start
 " Do not show stupid q: window
 map q: :q
 
-" Act like D and C
+" make & consistent with D and C (yank until the eol)
 nnoremap Y y$
 
 " If I'm trying to use my mouse, let me use my damn mouse
