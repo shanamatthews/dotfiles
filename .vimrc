@@ -112,11 +112,6 @@ map q: :q
 " make & consistent with D and C (yank until the eol)
 nnoremap Y y$
 
-" If I'm trying to use my mouse, let me use my damn mouse
-if has ('mouse')
-  set mouse=a
-endif
-
 " If linux then set ttymouse
 let s:uname = system("echo -n \"$(uname)\"")
 if !v:shell_error && s:uname == "Linux" && !has('nvim')
