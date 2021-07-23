@@ -23,9 +23,13 @@ set backupdir=~/.vim/.backup//
 set directory=~/.vim/.swp//
 
 set autowrite          " automatically write files when multiple files opea
+set autoread           " automaticlaly re-read in files that have been chanced
 
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 cmap w!! w !sudo tee > /dev/null %
+
+" replace emojis
+autocmd BufWritePost *.md silent !toemoji %
 
 " --------------------------------- buffer, history ---------------------------
 
