@@ -18,6 +18,8 @@ toemoji () {
     out="$(mktemp)"
   fi
   
+  IFS=$'\n'
+
   while read -r line; do # ignore escapes
     for k in ${!emoji[@]}; do
       line=${line//:$k:/${emoji[$k]}}
