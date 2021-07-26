@@ -11,8 +11,8 @@
 
 argsorin () { 
     local buf="$*"
-    if [[ -n "$buf" ]]; then
-      echo "$buf"
+    if [[ -n "${buf}" ]]; then
+      echo "${buf}"
       return
     fi
     echo "$(</dev/stdin)"
