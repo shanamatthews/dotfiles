@@ -5,5 +5,5 @@
 cdtmp() {
   name="$1"
   mkdir -p "/tmp/${name}"
-  cd "/tmp/${name}"
+  cd "/tmp/${name}" || exit
 }
