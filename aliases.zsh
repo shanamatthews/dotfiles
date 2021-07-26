@@ -7,3 +7,5 @@ alias ubuntu="docker run -it --rm ubuntu"
 alias rwxws="docker run -it --rm rwxrob/workspace"
 alias shellcheck='function _sc(){ shellcheck -o all $1; }; _sc'
 alias sc='function _sc(){ shellcheck -o all $1; }; _sc'
+alias snippets='cd $SNIPPETS'
+alias scripts='cd $SCRIPTS'

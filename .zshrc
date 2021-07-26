@@ -134,6 +134,3 @@ export LESS_TERMCAP_so="[34m"  # blue
 export LESS_TERMCAP_ue=""
 export LESS_TERMCAP_us="[4m"   # underline
 
-# this is broken
-# export MANPAGER="less -R --use-color -Dd+r -Du+b"
-
