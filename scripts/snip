@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+[[ -z $SNIPPETS ]] && echo "SNIPPETS path is not defined" && exit 1
+
+snip () {
+  local name="$1"
+  shift                                    # shifts the first argument off the args list
+  local snip_path="$SNIPPETS/$name"
+  if [[ -r $snip_path ]]; then             # if it's a readable file and it exists
+    local buf=$(<$snip_path)
+    local -i n=1                           # -i declares this an integer
+
+    if [[ $# > 0 ]]; then                  # if I have more than one argument
+      for arg in "$@"; do
+        buf=${buf//\{$n\}/$arg}
+        ((n++))
+      done
+    else                                   # we are getting our stuff from stdin
+      while IFS=$'\n' read -r argline; do  # have to mess with IFS to accept
+        IFS=" " snip $name $argline        # for this line we want IFS to be " "
+      done
+      return
+    fi
+    echo "$buf"
+  fi
+}
+
+snip "$@"
