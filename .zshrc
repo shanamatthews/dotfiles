@@ -103,11 +103,14 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # ---------------------------------- my path ----------------------------------
-path+=($HOME/.local/bin)
-path+=($HOME/.local/bin/scripts)
-export PATH
 
 export SCRIPTS="$HOME/.local/bin/scripts"
+export SNIPPETS="$HOME/.local/snippets"
+
+path+=($HOME/.local/bin)
+path+=($SCRIPTS)
+path+=($SNIPPETS)
+export PATH
 
 # ------------------------------ sourced scripts ------------------------------
 . $HOME/.local/bin/scripts/ocd
