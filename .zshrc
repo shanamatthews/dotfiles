@@ -102,10 +102,18 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# ---------------------------------- my path ----------------------------------
+# ---------------------------------- environment variables ----------------------------------
 
 export SCRIPTS="$HOME/.local/bin/scripts"
 export SNIPPETS="$HOME/.local/snippets"
+
+export TERM=xterm-256color
+export HRULEWIDTH=80
+export EDITOR=vi
+export VISUAL=vi
+export EDITOR_PREFIX=vi
+
+# ---------------------------------- my path ----------------------------------
 
 path+=($HOME/.local/bin)
 path+=($SCRIPTS)
