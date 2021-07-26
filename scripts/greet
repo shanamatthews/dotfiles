@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+# ------------------------------ tab completion ------------------------------
+# complete -C <program_name> <program_name>
+
+declare -a COMMANDS=(foo bar blah)
+
+if [[ -n $COMP_LINE ]]; then
+
+  for c in ${COMMANDS[@]}; do
+    # the length in bytes of the entire CMD
+    [[ ${c:0:${#2}} == ${2,,} ]] && echo $c   
+  done
+
+  exit
+fi
+_foo() {
+  echo would foo
+}
+
+_bar() {
+  echo would bar
+}
+
+_blah() {
+  echo would blah
+}
+
+# -------------------------------- delegation --------------------------------
+
+declare cmd=$1; shift
+
+for c in ${COMMANDS[@]}; do
+  # if it matches the command exactly, call it
+  [[ $c == $cmd ]] && "_$cmd" "$@" && exit $?
+done
+
