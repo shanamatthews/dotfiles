@@ -1,11 +1,11 @@
-" ----------------------------- vim settings!!! --------------------------------
+" ------------------------------ vim settings!!! -----------------------------
 
 " vi compatibility - ironically (??) this option is not compatible with vi :P
 " and is also kind of just a lie and actually supports lots of stuff vi doesn't
 " actually there's no point in turning this on because it's not compatible
 set nocompatible
 
-" ----------------------------- backups/saves ---------------------------------
+" ------------------------------- backups/saves ------------------------------
 
 if has("vms")
   set nobackup		     " do not keep a backup file, use versions instead
@@ -31,7 +31,7 @@ cmap w!! w !sudo tee > /dev/null %
 " replace emojis
 autocmd BufWritePost *.md silent !toemoji %
 
-" --------------------------------- buffer, history ---------------------------
+" ------------------------------ buffer, history -----------------------------
 
 " increase the length of the vim buffer
 " prevents truncated yanks, deletes, etc
@@ -39,7 +39,7 @@ set viminfo='20,<1000,s1000
 
 set history=200		     " keep 200 lines of command line history
 
-" ----------------------------- menus, command displays ------------------------
+" -------------------------- menus, command displays -------------------------
 
 set showcmd		         " display incomplete commands
 set wildmenu		       " display completion matches in a status line
@@ -51,7 +51,7 @@ set showmode           " show command/insert mode
 
 set norelativenumber   " this setting is stupid
 
-" ----------------------------- text display -----------------------------------
+" ------------------------------- text display -------------------------------
 
 set display=lastline   " show as much of last line as possible
 set scrolloff=5        " try to keep some buffer around the cursor
@@ -62,13 +62,13 @@ set ruler              " column and row position shown in bottom right
 
 set showmatch          " highlight matching brackets/braces/parens
 
-" ----------------------------- text wrap --------------------------------------
+" --------------------------------- text wrap --------------------------------
 
 set wrap
 set textwidth=80
 set formatoptions=tcq  " this is the default, consider changing
 
-" ----------------------------- indenting --------------------------------------
+" --------------------------------- indenting --------------------------------
 
 set autoindent         " automatically indent lines
 
@@ -90,7 +90,7 @@ set smarttab
 
 set shiftround         " Round indent to multiple of 'shiftwidth'
 
-" ----------------------------- searching --------------------------------------
+" --------------------------------- searching --------------------------------
 
 set incsearch          " incremental search 
 set ic                 " and case insensitive
@@ -105,7 +105,7 @@ set smartcase          " exept when we've used a capital letter explicitly
 nnoremap n nzzzv
 nnoremap N Nzzzv 
 
-" ----------------------------- commands ---------------------------------------
+" --------------------------------- commands ---------------------------------
 
 " Allow backspacing over everything in insert mode.
 set backspace=indent,eol,start
@@ -144,12 +144,12 @@ inoremap <down> <NOP>
 inoremap <left> <NOP>
 inoremap <right> <NOP>
 
-" ----------------------------- filetype specifics -----------------------------
+" ---------------------------- filetype specifics ----------------------------
 
 autocmd FileType javascript setlocal equalprg=js-beautify\ --stdin
 autocmd FileType sh set commentstring=#\ %s
 
-" ----------------------------- optional packages ------------------------------
+" ----------------------------- optional packages ----------------------------
 
 " The matchit plugin makes the % command work better, but it is not backwards
 " compatible.

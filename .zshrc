@@ -102,7 +102,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# ---------------------------------- environment variables ----------------------------------
+# --------------------------- environment variables --------------------------
 
 export SCRIPTS="$HOME/.local/bin/scripts"
 export SNIPPETS="$HOME/.local/snippets"
@@ -113,18 +113,18 @@ export EDITOR=vi
 export VISUAL=vi
 export EDITOR_PREFIX=vi
 
-# ---------------------------------- my path ----------------------------------
+# ---------------------------------- my path ---------------------------------
 
 path+=($HOME/.local/bin)
 path+=($SCRIPTS)
 path+=($SNIPPETS)
 export PATH
 
-# ------------------------------ sourced scripts ------------------------------
+# ------------------------------ sourced scripts -----------------------------
 . $HOME/.local/bin/scripts/ocd
 . $HOME/.local/bin/scripts/cdtmp
 
-# --------------------------- colors in manpages ------------------------------
+# ---------------------------- colors in manpages ----------------------------
 # this is how we get colored man pages oooooh so fancy
 # no one honestly knows what most of this does but it does make it pretty
 # these variables are designed so that man will work with them
