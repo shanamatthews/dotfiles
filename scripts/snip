@@ -16,13 +16,31 @@ snip () {
         ((n++))
       done
     else                                   # we are getting our stuff from stdin
+      local -i had_stdin=0
+
       while IFS=$'\n' read -r argline; do  # have to mess with IFS to accept
         IFS=" " snip $name $argline        # for this line we want IFS to be " "
+        had_stdin=1
       done
+
+      if [[ $had_stdin == 0 ]]; then
+        echo "$buf"
+      fi
+
       return
     fi
     echo "$buf"
   fi
 }
+
+# -------------------------- tab completion --------------------------
+# complete -C snip snip
+
+if [[ -n $COMP_LINE ]]; then
+   
+  exit  
+fi
+
+# -------------------------- run program--------------------------
 
 snip "$@"
