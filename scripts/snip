@@ -37,8 +37,14 @@ snip () {
 # complete -C snip snip
 
 if [[ -n $COMP_LINE ]]; then
-   
-  exit  
+
+  declare -a COMMANDS=($(ls $SNIPPETS))
+
+  for c in ${COMMANDS[@]}; do
+    [[ ${c:0:${#2}} == $2 ]] && echo $c                # the length in bytes of the entire CMD
+  done
+
+  exit
 fi
 
 # -------------------------- run program--------------------------
