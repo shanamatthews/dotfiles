@@ -1,0 +1,13 @@
+# -------------------------- tab completion --------------------------
+# complete -C <program_name> <program_name>
+
+if [[ -n $COMP_LINE ]]; then
+
+  declare -a COMMANDS=(your subcommands here)
+
+  for c in ${COMMANDS[@]}; do
+    [[ ${c:0:${#2}} == ${2,,} ]] && echo $c                # the length in bytes of the entire CMD
+  done
+
+  exit
+fi
