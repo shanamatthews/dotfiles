@@ -159,3 +159,24 @@ if has('syntax') && has('eval')
   packadd! matchit
 endif
 
+" autoinstall Plug
+let data_dir = '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+" only load plugins if Plug is available
+" don't forget to :PlugInstall (in vim) to install plugins
+if filereadable(expand("~/.vim/autoload/plug.vim"))
+
+  " junegunn/vim-plug
+
+  call plug#begin('~/.local/share/vim/plugins')
+  " plugins go here
+  Plug 'vim-pandoc/vim-pandoc'
+  Plug 'sheerun/vim-polyglot'
+
+  call plug#end()
+
+endif
