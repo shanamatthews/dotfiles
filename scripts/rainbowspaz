@@ -1,20 +1,18 @@
 #!/bin/bash
 
-purple="\e[35m"
-red="\e[31m"
 x="\e[0m"
 clrscn="\e[H\e[2J"
 
 randcolor255() {
-  printf "\e[38;5;$((RANDOM%255))m" # take a random # between 0 and 255
+  echo -e "\e[38;5;$((RANDOM%255))m" # take a random # between 0 and 255
 }
 
 randcolorrgb() {
-  printf "\e[38;2;$((RANDOM%255));$((RANDOM%255));$((RANDOM%255))m" # take a random rgb color
+  echo -e "\e[38;2;$((RANDOM%255));$((RANDOM%255));$((RANDOM%255))m" # take a random rgb color
 }
 
 randcolorbuiltin() {
-  printf "\e[1;$(((RANDOM%8)+30))m" # take a random # between 0 and 255
+  echo "\e[1;$(((RANDOM%8)+30))m" # take a random # between 0 and 255
 }
 
 # gotta escape the `%` chars since we're using them in printf
