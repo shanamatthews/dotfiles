@@ -1,47 +1,48 @@
 #!/usr/bin/env bash
 
-[[ -z $SNIPPETS ]] && echo "SNIPPETS path is not defined" && exit 1
+[[ -z ${SNIPPETS} ]] && echo "SNIPPETS path is not defined" && exit 1
 
 snip () {
   local name="$1"
   shift                                    # shifts the first argument off the args list
-  local snip_path="$SNIPPETS/$name"
-  if [[ -r $snip_path ]]; then             # if it's a readable file and it exists
-    local buf=$(<$snip_path)
+  local snip_path="${SNIPPETS}/${name}"
+  if [[ -r ${snip_path} ]]; then             # if it's a readable file and it exists
+    local buf
+    buf=$(<"${snip_path}")
     local -i n=1                           # -i declares this an integer
 
-    if [[ $# > 0 ]]; then                  # if I have more than one argument
+    if [[ $# -gt 0 ]]; then                  # if I have more than one argument
       for arg in "$@"; do
-        buf=${buf//\{$n\}/$arg}
+        buf=${buf//\{${n}\}/${arg}}
         ((n++))
       done
     else                                   # we are getting our stuff from stdin
       local -i had_stdin=0
 
       while IFS=$'\n' read -r argline; do  # have to mess with IFS to accept
-        IFS=" " snip $name $argline        # for this line we want IFS to be " "
+        IFS=" " snip "${name}" ${argline} # ${name} ${argline}        # for this line we want IFS to be " "
         had_stdin=1
       done
 
-      if [[ $had_stdin == 0 ]]; then
-        echo "$buf"
+      if [[ ${had_stdin} == 0 ]]; then
+        echo "${buf}"
       fi
 
       return
     fi
-    echo "$buf"
+    echo "${buf}"
   fi
 }
 
 # ------------------------------ tab completion  -----------------------------
 # complete -C snip snip
 
-if [[ -n $COMP_LINE ]]; then
+if [[ -n ${COMP_LINE} ]]; then
 
-  declare -a COMMANDS=($(ls $SNIPPETS))
+  declare -a COMMANDS=("$(ls "${SNIPPETS}")")
 
-  for c in ${COMMANDS[@]}; do
-    [[ ${c:0:${#2}} == ${2,,} ]] && echo $c                # the length in bytes of the entire CMD
+  for c in "${COMMANDS[@]}"; do
+    [[ ${c:0:${#2}} == "${2,,}" ]] && echo "${c}"                # the length in bytes of the entire CMD
   done
 
   exit
