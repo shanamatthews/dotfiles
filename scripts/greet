@@ -5,11 +5,11 @@
 
 declare -a COMMANDS=(foo bar blah)
 
-if [[ -n $COMP_LINE ]]; then
+if [[ -n ${COMP_LINE} ]]; then
 
-  for c in ${COMMANDS[@]}; do
+  for c in "${COMMANDS[@]}"; do
     # the length in bytes of the entire CMD
-    [[ ${c:0:${#2}} == ${2,,} ]] && echo $c   
+    [[ ${c:0:${#2}} == "${2,,}" ]] && echo "${c}"
   done
 
   exit
@@ -28,10 +28,10 @@ _blah() {
 
 # -------------------------------- delegation --------------------------------
 
-declare cmd=$1; shift
+declare cmd=${1}; shift
 
-for c in ${COMMANDS[@]}; do
+for c in "${COMMANDS[@]}"; do
   # if it matches the command exactly, call it
-  [[ $c == $cmd ]] && "_$cmd" "$@" && exit $?
+  [[ ${c} == "${cmd}" ]] && "_${cmd}" "${@}" && exit ${?}
 done
 
