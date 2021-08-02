@@ -11,25 +11,25 @@ emoji[grapes]=🍇
 toemoji () {
   local in=/dev/stdin
   local out=/dev/stdout
-  local file="$1"
+  local file="${1}"
 
-  if [[ -n $file ]]; then
-    in="$file"
+  if [[ -n ${file} ]]; then
+    in="${file}"
     out="$(mktemp)"
   fi
   
   IFS=$'\n'
 
   while read -r line; do # ignore escapes
-    for k in ${!emoji[@]}; do
-      line=${line//:$k:/${emoji[$k]}}
+    for k in "${!emoji[@]}"; do
+      line=${line//:${k}:/${emoji[${k}]}}
     done
-    echo "$line" >> $out
-  done < "$in"
+    echo "${line}" >> "${out}"
+  done < "${in}"
 
-  if [[ -n $file ]]; then
-    cp "$out" "$file"
-    rm "$out"
+  if [[ -n ${file} ]]; then
+    cp "${out}" "${file}"
+    rm "${out}"
   fi
 
 }
