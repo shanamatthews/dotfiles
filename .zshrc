@@ -106,7 +106,7 @@ source $ZSH/oh-my-zsh.sh
 
 export SCRIPTS="$HOME/.local/bin/scripts"
 export SNIPPETS="$HOME/.local/snippets"
-export MYVIMRC="$HOME/.vimrc
+export MYVIMRC="$HOME/.vimrc"
 
 export TERM=xterm-256color
 export HRULEWIDTH=80
