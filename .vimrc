@@ -115,7 +115,7 @@ endif
 
 " trying to add these to make tmux mouse stuff work better
 " set ttymouse=xterm
-set mouse=a
+" set mouse=a
 
 " --------------------------------- commands ---------------------------------
 
