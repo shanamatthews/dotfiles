@@ -177,12 +177,17 @@ endif
 if filereadable(expand("~/.vim/autoload/plug.vim"))
 
   " junegunn/vim-plug
-
   call plug#begin('~/.local/share/vim/plugins')
+
   " plugins go here
   Plug 'vim-pandoc/vim-pandoc'
+  Plug 'vim-pandoc/vim-pandoc-syntax'
 "  Plug 'sheerun/vim-polyglot'
 
   call plug#end()
+
+  " plugin customization
+  " disable pandoc folding
+  let g:pandoc#modules#disabled = ["folding"]
 
 endif
