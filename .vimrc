@@ -105,6 +105,18 @@ set smartcase          " exept when we've used a capital letter explicitly
 nnoremap n nzzzv
 nnoremap N Nzzzv 
 
+" -------------------------------- mouse stuff -------------------------------
+
+" If linux then set ttymouse
+let s:uname = system("echo -n \"$(uname)\"")
+if !v:shell_error && s:uname == "Linux" && !has('nvim')
+  set ttymouse=xterm
+endif
+
+" trying to add these to make tmux mouse stuff work better
+" set ttymouse=xterm
+set mouse=a
+
 " --------------------------------- commands ---------------------------------
 
 " Allow backspacing over everything in insert mode.
@@ -115,12 +127,6 @@ map q: :q
 
 " make & consistent with D and C (yank until the eol)
 nnoremap Y y$
-
-" If linux then set ttymouse
-let s:uname = system("echo -n \"$(uname)\"")
-if !v:shell_error && s:uname == "Linux" && !has('nvim')
-  set ttymouse=xterm
-endif
 
 syntax enable
 let c_comment_strings=1 " I like highlighting strings inside C comments.
@@ -175,7 +181,7 @@ if filereadable(expand("~/.vim/autoload/plug.vim"))
   call plug#begin('~/.local/share/vim/plugins')
   " plugins go here
   Plug 'vim-pandoc/vim-pandoc'
-  Plug 'sheerun/vim-polyglot'
+"  Plug 'sheerun/vim-polyglot'
 
   call plug#end()
 

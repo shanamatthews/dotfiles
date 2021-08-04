@@ -114,6 +114,9 @@ export EDITOR=vi
 export VISUAL=vi
 export EDITOR_PREFIX=vi
 
+export GOPATH=~/.local/share/go
+export GOBIN=~/.local/bin
+
 # ---------------------------------- my path ---------------------------------
 
 path+=($HOME/.local/bin)
