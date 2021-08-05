@@ -65,7 +65,7 @@ set showmatch          " highlight matching brackets/braces/parens
 " --------------------------------- text wrap --------------------------------
 
 set wrap
-set textwidth=80
+set textwidth=72
 set formatoptions=tcq  " this is the default, consider changing
 
 " --------------------------------- indenting --------------------------------
@@ -114,6 +114,7 @@ if !v:shell_error && s:uname == "Linux" && !has('nvim')
 endif
 
 " trying to add these to make tmux mouse stuff work better
+" (spoiler alert, didn't work)
 " set ttymouse=xterm
 " set mouse=a
 
