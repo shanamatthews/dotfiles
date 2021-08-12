@@ -183,7 +183,7 @@ if filereadable(expand("~/.vim/autoload/plug.vim"))
   " plugins go here
   Plug 'vim-pandoc/vim-pandoc'
   Plug 'vim-pandoc/vim-pandoc-syntax'
-"  Plug 'sheerun/vim-polyglot'
+  Plug 'sheerun/vim-polyglot'
 
   call plug#end()
 
