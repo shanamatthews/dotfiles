@@ -54,7 +54,7 @@ set norelativenumber   " this setting is stupid
 " ------------------------------- text display -------------------------------
 
 set display=lastline   " show as much of last line as possible
-set scrolloff=5        " try to keep some buffer around the cursor
+set scrolloff=2        " try to keep some buffer around the cursor
 
 set number             " activate line numbering
 
