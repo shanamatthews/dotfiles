@@ -1,0 +1,2 @@
+#!/bin/sh
+echo "date: $(exec date -u +%Y-%m-%d)"
