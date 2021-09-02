@@ -184,6 +184,7 @@ if filereadable(expand("~/.vim/autoload/plug.vim"))
   Plug 'vim-pandoc/vim-pandoc'
   Plug 'vim-pandoc/vim-pandoc-syntax'
   Plug 'sheerun/vim-polyglot'
+  Plug 'jez/vim-better-sml'
 
   call plug#end()
 

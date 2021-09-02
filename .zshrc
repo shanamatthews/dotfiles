@@ -122,6 +122,9 @@ export GOBIN=~/.local/bin
 path+=($HOME/.local/bin)
 path+=($SCRIPTS)
 path+=($SNIPPETS)
+# wow, really hate that I have to do this, thanks smlnj
+# also for future reference, the binary name is sml
+path+=$(brew --prefix)/smlnj/bin
 export PATH
 
 # ------------------------------ sourced scripts -----------------------------
