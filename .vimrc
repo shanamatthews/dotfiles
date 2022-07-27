@@ -190,6 +190,7 @@ if filereadable(expand("~/.vim/autoload/plug.vim"))
   Plug 'vim-pandoc/vim-pandoc-syntax'
   Plug 'sheerun/vim-polyglot'
   Plug 'jez/vim-better-sml'
+  Plug 'preservim/nerdtree'
 
   call plug#end()
 
@@ -198,3 +199,6 @@ if filereadable(expand("~/.vim/autoload/plug.vim"))
   let g:pandoc#modules#disabled = ["folding"]
 
 endif
+
+" Options for plugins
+autocmd VimEnter * NERDTree    " Start NerdTree on startup & leave cursor in it
