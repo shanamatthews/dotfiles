@@ -118,6 +118,11 @@ endif
 " set ttymouse=xterm
 " set mouse=a
 
+" -------------------------------- shell pane --------------------------------
+
+set termwinsize=12x0   " set terminal pane size (?? shana doesn't know what these #s refer to)
+set splitbelow         " always split terminal below (?? shana doesn't really get this either)
+
 " --------------------------------- commands ---------------------------------
 
 " Allow backspacing over everything in insert mode.
@@ -156,7 +161,7 @@ inoremap <right> <NOP>
 autocmd FileType javascript setlocal equalprg=js-beautify\ --stdin
 autocmd FileType sh set commentstring=#\ %s
 
-" ----------------------------- optional packages ----------------------------
+" ---------------------------------- plugins ---------------------------------
 
 " The matchit plugin makes the % command work better, but it is not backwards
 " compatible.
