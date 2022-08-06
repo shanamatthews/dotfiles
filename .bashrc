@@ -15,6 +15,7 @@ export VISUAL=vim
 export SCRIPTS="$HOME/.local/bin"
 export SNIPPETS="$HOME/.local/snippets"
 export VIMCONFIG="$HOME/.vim"
+export HRULEWIDTH=80
 
 # ------------------------------------ pager -----------------------------------
 # this is how we get colored man pages oooooh so fancy
@@ -167,3 +168,8 @@ CDPATH=.:\
 "$SNIPPETS":\
 ~/.local:\
 ~
+
+# ------------------------------ configure utils -----------------------------
+
+eval "$(thefuck --alias)"
+
