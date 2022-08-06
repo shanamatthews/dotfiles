@@ -207,6 +207,7 @@ if filereadable(expand("~/.vim/autoload/plug.vim"))
   " plugin customization
   " disable pandoc folding
   let g:pandoc#modules#disabled = ["folding"]
+  let NERDTreeShowHidden=1
 
 endif
 
