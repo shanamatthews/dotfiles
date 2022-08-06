@@ -46,7 +46,11 @@ if command -v dircolors &> /dev/null; then # check if our system has dircolors (
   fi
 fi
 
+# we also want colored grep output
 alias ls='ls -h --color=auto'              # -h for human-readable output
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
 
 # ------------------------------ bash shell options -----------------------------
 
@@ -77,9 +81,33 @@ PROMPT_COMMAND="__ps1"
 
 # ------------------------------------ aliases -----------------------------------
 
+# basic ls aliases
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+
+# my personal favies
 alias more='less'
 alias scripts='cd ${SCRIPTS}'
-#!/usr/bin/bash
+alias sz='source ~/.bashrc'       # called sz for historical reasons (using zsh)
+alias ez='vim ~/.bashrc'          # same note
+alias aliases='vim ~/.bashrc'     # in zsh I had a separate aliases file 
+
+alias myip="curl http://ipecho.net/plain; echo"
+alias c=clear
+alias top=htop
+alias shellcheck='function _sc(){ shellcheck -o all $1; }; _sc'
+alias sc='function _sc(){ shellcheck -o all $1; }; _sc'
+alias snippets='cd $SNIPPETS'
+alias scripts='cd $SCRIPTS'
+alias vip='vim -p'
+
+# we're not using this file yet
+
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
 
 # ---------------------------------- functions -----------------------------------
 
