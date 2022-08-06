@@ -14,6 +14,7 @@ export EDITOR=vim
 export VISUAL=vim
 export SCRIPTS="$HOME/.local/bin"
 export SNIPPETS="$HOME/.local/snippets"
+export VIMCONFIG="$HOME/.vim"
 
 # ------------------------------------ pager -----------------------------------
 # this is how we get colored man pages oooooh so fancy
