@@ -22,6 +22,8 @@ export HRULEWIDTH=80
 # no one honestly knows what most of this does but it does make it pretty
 # these variables are designed so that man will work with them
 
+# this is super broken on my ubuntu machine - why? TODO SHANA FIX
+
 if test -x /usr/bin/lesspipe; then
   export LESSOPEN="| /usr/bin/lesspipe %s";
   export LESSCLOSE="/usr/bin/lesspipe %s %s";
@@ -68,6 +70,16 @@ shopt -s histappend
 export HISTCONTROL=ignoreboth
 export HISTSIZE=5000
 export HISTFILESIZE=10000
+
+# ------------------------------ command history -----------------------------
+
+# we don't need this, bc we just search with / on vim mode
+
+# bind '"\e[A": history-search-backward'
+# bind '"\eOA": history-search-backward'
+# bind '"\e[B": history-search-forward'
+# bind '"\eOB": history-search-forward'
+
 
 # ------------------------------------ prompt ------------------------------------
 
