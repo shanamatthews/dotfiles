@@ -166,6 +166,9 @@ map <C-l> <C-W>l
 autocmd FileType javascript setlocal equalprg=js-beautify\ --stdin
 autocmd FileType sh set commentstring=#\ %s
 
+" Shana doesn't know exactly what this does, but needed for vimwiki
+filetype plugin on
+
 " ---------------------------------- plugins ---------------------------------
 
 " The matchit plugin makes the % command work better, but it is not backwards
@@ -201,6 +204,7 @@ if filereadable(expand("~/.vim/autoload/plug.vim"))
   Plug 'sheerun/vim-polyglot'
   Plug 'jez/vim-better-sml'
   Plug 'preservim/nerdtree'
+  Plug 'vimwiki/vimwiki' 
 
   call plug#end()
 
