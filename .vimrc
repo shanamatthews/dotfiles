@@ -204,6 +204,8 @@ if filereadable(expand("~/.vim/autoload/plug.vim"))
   Plug 'sheerun/vim-polyglot'
   Plug 'jez/vim-better-sml'
   Plug 'preservim/nerdtree'
+  Plug 'godlygeek/tabular'
+  Plug 'preservim/vim-markdown'
 
   call plug#end()
 
