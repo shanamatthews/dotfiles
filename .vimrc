@@ -204,13 +204,15 @@ if filereadable(expand("~/.vim/autoload/plug.vim"))
   Plug 'sheerun/vim-polyglot'
   Plug 'jez/vim-better-sml'
   Plug 'preservim/nerdtree'
-  Plug 'vimwiki/vimwiki' 
 
   call plug#end()
 
   " plugin customization
+
   " disable pandoc folding
   let g:pandoc#modules#disabled = ["folding"]
+
+  " Nerdtree shows hidden files
   let NERDTreeShowHidden=1
 
 endif
