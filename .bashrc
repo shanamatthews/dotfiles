@@ -1,5 +1,6 @@
-# ~/.bashrc: executed by bash(1) for non-login shells.
+# ~/.bashrc: executed by bash(2) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
+bind '"\eOA": history-previous-history'
 # for examples
 
 # If not running interactively, don't do anything
@@ -15,6 +16,8 @@ export VISUAL=vim
 export SCRIPTS="$HOME/.local/bin"
 export SNIPPETS="$HOME/.local/snippets"
 export VIMCONFIG="$HOME/.vim"
+export SRC="$HOME/src"
+export GIT="$HOME/src/git"
 export HRULEWIDTH=80
 
 # ------------------------------------ pager -----------------------------------
@@ -175,11 +178,14 @@ pathprepend "$SNIPPETS"
 # export CDPATH="$SCRIPTS:$CDPATH"
 # export CDPATH=~/.local:"$CDPATH"
 
+
+
 CDPATH=.:\
 "$SCRIPTS":\
 "$SNIPPETS":\
+"$SRC":\
+"$GIT":\
 ~/.local:\
-~
 
 # ------------------------------ configure utils -----------------------------
 
