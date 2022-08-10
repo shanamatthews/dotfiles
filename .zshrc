@@ -105,6 +105,10 @@ if [[ $(sysctl -n machdep.cpu.brand_string) =~ "Apple" ]]; then
   APPLE_SILICON=true
 fi
 
+# -------------------------- make life worth living --------------------------
+
+set -o vi
+
 # --------------------------- environment variables --------------------------
 
 export SCRIPTS="$HOME/.local/bin/scripts"

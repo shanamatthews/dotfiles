@@ -53,5 +53,7 @@ mkdir -p "$HOME/.vim/.undo/"
 mkdir -p "$HOME/.vim/.backup/"
 mkdir -p "$HOME/.vim/.swp/"
 
-## todo config git
+## config git
+git config --global user.name "Shana Matthews"
+git config --global user.email shana.l.matthews@gmail.com
 
