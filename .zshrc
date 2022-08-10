@@ -102,6 +102,13 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+export APPLE_SILICON=false
+
+# check apple silicon
+if [[ $(sysctl -n machdep.cpu.brand_string) =~ "Apple" ]]; then
+  APPLE_SILICON=true
+fi
+
 # --------------------------- environment variables --------------------------
 
 export SCRIPTS="$HOME/.local/bin/scripts"
@@ -117,11 +124,17 @@ export EDITOR_PREFIX=vi
 export GOPATH=~/.local/share/go
 export GOBIN=~/.local/bin
 
-# ---------------------------------- my path ---------------------------------
+ # ---------------------------------- my path ---------------------------------
 
 path+=($HOME/.local/bin)
 path+=($SCRIPTS)
 path+=($SNIPPETS)
+
+# homebrew's apple silicon stupid setup
+if [[ "$APPLE_SILICON" ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
 # wow, really hate that I have to do this, thanks smlnj
 # also for future reference, the binary name is sml
 path+=$(brew --prefix)/smlnj/bin
@@ -149,3 +162,5 @@ export LESS_TERMCAP_so="[34m"  # blue
 export LESS_TERMCAP_ue=""
 export LESS_TERMCAP_us="[4m"   # underline
 
+# for thefuck
+eval $(thefuck --alias)
