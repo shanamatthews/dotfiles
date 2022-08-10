@@ -17,6 +17,7 @@ fi
 ln -s "$DOTFILES_DIR"/.zshrc ~/.zshrc
 ln -s "$DOTFILES_DIR"/.vimrc ~/.vimrc
 ln -s "$DOTFILES_DIR"/.tmux.conf ~/.tmux.conf
+ln -s "$DOTFILES_DIR"/aliases.zsh ~/aliases.zsh
 
 # install homebrew
 which -s brew
@@ -39,16 +40,18 @@ brew install thefuck
 source ~/.zshrc
 
 # set up directories if they don't exist
-
-mkdir -p "$SCRIPTS"
-mkdir -p "$SNIPPETS"
+mkdir -p $(dirname "$SCRIPTS")
 
 # if you run this a second time you'll get weird nested scripts &
 # snippets dirs...
-ln -s "$DOTFILES_DIR"/scripts "$SCRIPTS"
+ln -s "$DOTFILES_DIR"/scripts $(dirname "$SCRIPTS")
+
+# not sure why this works?
 ln -s "$DOTFILES_DIR"/snippets "$SNIPPETS"
 
 mkdir -p "$HOME/.vim/.undo/"
 mkdir -p "$HOME/.vim/.backup/"
 mkdir -p "$HOME/.vim/.swp/"
+
+## todo config git
 
