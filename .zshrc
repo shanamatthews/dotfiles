@@ -1,7 +1,6 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
+# ------------------------------ oh-my-zsh stuff -----------------------------
 # todo make oh-my-zsh optional
+
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/shanamatthews/.oh-my-zsh"
 
@@ -94,6 +93,10 @@ source $ZSH/oh-my-zsh.sh
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
+# ------------------------------- pretty prompt ------------------------------
+
+PROMPT='%F{068}%n%f in %F{141}%~%f -> '
+
 # ---------------------------------- aliases ---------------------------------
 
 source "$HOME"/aliases.zsh
@@ -104,10 +107,6 @@ export APPLE_SILICON=false
 if [[ $(sysctl -n machdep.cpu.brand_string) =~ "Apple" ]]; then
   APPLE_SILICON=true
 fi
-
-# -------------------------- make life worth living --------------------------
-
-set -o vi
 
 # --------------------------- environment variables --------------------------
 
@@ -162,5 +161,20 @@ export LESS_TERMCAP_so="[34m"  # blue
 export LESS_TERMCAP_ue=""
 export LESS_TERMCAP_us="[4m"   # underline
 
-# for thefuck
+# ---------------------------------- thefuck ---------------------------------
 eval $(thefuck --alias)
+
+# ------------------------------------ nvm -----------------------------------
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# ------------------------------------- z ------------------------------------
+. "$HOME/src/git/z/z.sh"
+
+# -------------------------- make life worth living --------------------------
+
+set -o vi
+fortune | ponysay
+
