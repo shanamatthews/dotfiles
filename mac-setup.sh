@@ -33,6 +33,9 @@ brew install tmux
 brew install glow
 brew install thefuck
 
+brew install ponysay
+brew install fortune
+
 # clone dotfiles
 # TBD
 
@@ -57,3 +60,5 @@ mkdir -p "$HOME/.vim/.swp/"
 git config --global user.name "Shana Matthews"
 git config --global user.email shana.l.matthews@gmail.com
 
+# ----------------------------------- add z ----------------------------------
+git clone git@github.com:rupa/z.git "$HOME/src/git/z"
