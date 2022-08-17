@@ -178,3 +178,9 @@ export NVM_DIR="$HOME/.nvm"
 set -o vi
 fortune | ponysay
 
+# -------------------------------- work stuff --------------------------------
+
+WORK_CONF_FILE="$HOME/.sentry/.sentry.conf"
+if [[ -f "$WORK_CONF_FILE" ]]; then
+  source "$WORK_CONF_FILE"
+fi
