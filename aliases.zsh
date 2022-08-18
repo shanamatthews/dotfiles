@@ -16,6 +16,8 @@ alias sz='source ~/.zshrc'
 alias ez='vim ~/.zshrc'
 
 alias tx='tmux attach || tmux new -s mysesh'
+
+alias tree='tree | less'
 # ------------------------------ bash ls aliases -----------------------------
 alias ls='ls --color=auto'
 alias dir='dir --color=auto'

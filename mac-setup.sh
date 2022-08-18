@@ -36,6 +36,8 @@ brew install thefuck
 brew install ponysay
 brew install fortune
 
+brew install tree
+
 # clone dotfiles
 # TBD
 
