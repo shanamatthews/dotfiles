@@ -6,12 +6,12 @@
 DOTFILES_DIR="$HOME/src/git/dotfiles"
 
 # install basic utilities
-sudo apt -y update
-sudo apt -y install vim
-sudo apt -y install gnome-tweaks
-sudo apt -y install git
-sudo apt -y install curl
-sudo apt -y install tmux
+sudo apt-get -y update
+sudo apt-get -y install vim
+sudo apt-get -y install gnome-tweaks
+sudo apt-get -y install git
+sudo apt-get -y install curl
+sudo apt-get -y install tmux
 
 # install glow bc I'm extra
 echo 'deb [trusted=yes] https://repo.charm.sh/apt/ /' | sudo tee /etc/apt/sources.list.d/charm.list
