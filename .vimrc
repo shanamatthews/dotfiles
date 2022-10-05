@@ -221,3 +221,8 @@ endif
 
 " Options for plugins
 autocmd VimEnter * NERDTree    " Start NerdTree on startup & leave cursor in it
+
+" let mapleader = ","
+" nmap <leader>ne :NERDTreeFocus<cr>
+
+map <silent> <C-n> :NERDTreeToggle<CR>
