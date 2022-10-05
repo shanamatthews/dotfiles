@@ -179,6 +179,12 @@ export NVM_DIR="$HOME/.nvm"
 # ------------------------------------- z ------------------------------------
 . "$HOME/src/git/z/z.sh"
 
+# ----------------------------------- pyenv ----------------------------------
+
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
 # -------------------------- make life worth living --------------------------
 
 set -o vi

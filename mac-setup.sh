@@ -3,6 +3,9 @@
 # you must clone your own dotfiles & set up ssh key before this works,
 # sorry
 
+# clone dotfiles
+# TBD
+
 DOTFILES_DIR="$HOME/src/git/dotfiles"
 
 # link dotfiles
@@ -37,9 +40,8 @@ brew install ponysay
 brew install fortune
 
 brew install tree
+brew install pyenv
 
-# clone dotfiles
-# TBD
 
 # make sure the below env vars are set
 source ~/.zshrc
