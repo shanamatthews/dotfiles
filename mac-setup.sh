@@ -41,7 +41,7 @@ brew install fortune
 
 brew install tree
 brew install pyenv
-
+brew install autoenv
 
 # make sure the below env vars are set
 source ~/.zshrc
