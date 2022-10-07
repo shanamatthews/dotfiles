@@ -29,7 +29,7 @@ set autoread           " automaticlaly re-read in files that have been chanced
 cmap w!! w !sudo tee > /dev/null %
 
 " replace emojis
-autocmd BufWritePost *.md silent !toemoji %
+" autocmd BufWritePost *.md silent !toemoji %
 
 " ------------------------------ buffer, history -----------------------------
 
@@ -123,6 +123,8 @@ endif
 set termwinsize=12x0   " set terminal pane size (?? shana doesn't know what these #s refer to)
 set splitbelow         " always split terminal below (?? shana doesn't really get this either)
 
+map <silent> <C-t> :terminal<CR>
+
 " --------------------------------- commands ---------------------------------
 
 " Allow backspacing over everything in insert mode.
@@ -156,6 +158,7 @@ inoremap <down> <NOP>
 inoremap <left> <NOP>
 inoremap <right> <NOP>
 
+" navigate with ctrl + directions, instead of ctrl + w + direction
 map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
@@ -168,6 +171,17 @@ autocmd FileType sh set commentstring=#\ %s
 
 " Shana doesn't know exactly what this does, but needed for vimwiki
 filetype plugin on
+
+" ---------------------------------- linting ---------------------------------
+
+" set pylint linter for python files
+autocmd FileType python compiler pylint
+
+" automatically execute :make on file write
+autocmd BufWritePost *.py,*.js silent make! <afile> | silent redraw!
+
+" automatically open the quickfix window
+autocmd QuickFixCmdPost [^l]* cwindow
 
 " ---------------------------------- plugins ---------------------------------
 
