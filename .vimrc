@@ -49,14 +49,13 @@ set ttimeoutlen=100	   " wait up to 100ms after Esc for special key
 
 set showmode           " show command/insert mode
 
-set norelativenumber   " this setting is stupid
-
 " ------------------------------- text display -------------------------------
 
 set display=lastline   " show as much of last line as possible
 set scrolloff=2        " try to keep some buffer around the cursor
 
 set number             " activate line numbering
+set relativenumber     " so we have numbers and relative numbers
 
 set ruler              " column and row position shown in bottom right
 
@@ -123,7 +122,10 @@ endif
 set termwinsize=12x0   " set terminal pane size (?? shana doesn't know what these #s refer to)
 set splitbelow         " always split terminal below (?? shana doesn't really get this either)
 
-map <silent> <C-t> :terminal<CR>
+" ctrl + s opens shell
+map <silent> <C-s> :terminal<CR>
+" ctrl + t goes through tabs
+map <silent> <C-t> :tabn<CR>
 
 " --------------------------------- commands ---------------------------------
 
@@ -175,13 +177,39 @@ filetype plugin on
 " ---------------------------------- linting ---------------------------------
 
 " set pylint linter for python files
-autocmd FileType python compiler pylint
+" autocmd FileType python compiler pylint
 
 " automatically execute :make on file write
-autocmd BufWritePost *.py,*.js silent make! <afile> | silent redraw!
+" autocmd BufWritePost *.py,*.js silent make! <afile> | silent redraw!
 
 " automatically open the quickfix window
-autocmd QuickFixCmdPost [^l]* cwindow
+" autocmd QuickFixCmdPost [^l]* cwindow
+
+" using ALElint
+let g:ale_linters = {
+\  'javascript': ['eslint'],
+\  'python': ['pylint']
+\}
+
+let g:ale_sign_error = '!'
+let g:ale_sign_warning = '*'
+
+let g:ale_set_highlights = 0
+highlight clear ALEErrorSign
+highlight clear ALEWarningSign
+
+" work with airline
+let g:airline#extensions#ale#enabled = 1
+
+" lint only on save
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_insert_leave = 0
+" don't want linters to run on opening a file
+let g:ale_lint_on_enter = 0
+
+" Disable auto-detection of virtualenvironments
+let g:ale_virtualenv_dir_names = []
+" Environment variable ${VIRTUAL_ENV} is always used
 
 " ---------------------------------- plugins ---------------------------------
 
@@ -220,6 +248,8 @@ if filereadable(expand("~/.vim/autoload/plug.vim"))
   Plug 'preservim/nerdtree'
   Plug 'godlygeek/tabular'
   Plug 'preservim/vim-markdown'
+  Plug 'dense-analysis/ale'
+  Plug 'vim-airline/vim-airline'
 
   call plug#end()
 
