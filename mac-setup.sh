@@ -27,6 +27,7 @@ which -s brew
 if [[ $? != 0 ]] ; then
     # Install Homebrew
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    source "$HOME/.zshrc"
 else
     brew update
 fi
@@ -67,3 +68,13 @@ git config --global user.email shana.l.matthews@gmail.com
 
 # ----------------------------------- add z ----------------------------------
 git clone git@github.com:rupa/z.git "$HOME/src/git/z"
+
+
+# ------------------------------- install langs ------------------------------
+
+# have to install go from a download: https://go.dev/doc/install
+
+# add if statement for go being installed
+
+go get github.com/rwxrob/cmdbox-pomo/pomo
+
