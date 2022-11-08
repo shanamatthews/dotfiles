@@ -168,7 +168,7 @@ map <C-l> <C-W>l
 
 " ------------------------------ tab completion ------------------------------
 
-imap <Tab> <C-P>
+" imap <Tab> <C-P> " this was cursed
 " imap <Tab> <C-N> " this is C-P backwards
 " https://thoughtbot.com/blog/vim-you-complete-me
 
@@ -283,3 +283,10 @@ autocmd VimEnter * NERDTree    " Start NerdTree on startup & leave cursor in it
 " nmap <leader>ne :NERDTreeFocus<cr>
 
 map <silent> <C-n> :NERDTreeToggle<CR>
+
+" ------------------------------ omnicompletion ------------------------------
+
+" these broke everything somehow
+" filetype plugin on
+" set omnifunc=syntaxcomplete#Complete
+
