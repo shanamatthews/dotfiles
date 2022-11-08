@@ -18,6 +18,7 @@ alias ez='vim ~/.zshrc'
 alias tx='tmux attach || tmux new -s mysesh'
 
 alias tree='tree | less'
+
 # ------------------------------ bash ls aliases -----------------------------
 alias ls='ls --color=auto'
 alias dir='dir --color=auto'
@@ -31,4 +32,7 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
+# -------------------------------- vim stuff ---------------------------------
+alias vim=nvim
+alias ev='vim ~/.config/nvim/init.vim'
 
