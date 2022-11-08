@@ -189,10 +189,27 @@ eval "$(pyenv init -)"
 # pipenv
 # export PIPENV_VENV_IN_PROJECT=1
 
+alias pipenv-list='for venv in ~/.local/share/virtualenvs/* ; do basename $venv; cat $venv/.project | sed "s/\(.*\)/\t\1\n/" ; done'
+
 # -------------------------- make life worth living --------------------------
 
 set -o vi
 fortune | ponysay
+
+# -------------------------------- pomo-timer --------------------------------
+
+# Requires https://github.com/caarlos0/timer to be installed
+# Requires https://github.com/julienXX/terminal-notifier to be installed
+
+alias work="timer 30m && terminal-notifier -message 'Pomodoro'\
+        -title 'Work Timer is up! Take a Break 😊'\
+        -appIcon '~/Pictures/pumpkin.png'\
+        -sound Crystal"
+        
+alias rest="timer 5m && terminal-notifier -message 'Pomodoro'\
+        -title 'Break is over! Get back to work 😬'\
+        -appIcon '~/Pictures/pumpkin.png'\
+        -sound Crystal"
 
 # -------------------------------- work stuff --------------------------------
 
@@ -201,3 +218,9 @@ if [[ -f "$WORK_CONF_FILE" ]]; then
   source "$WORK_CONF_FILE"
 fi
 
+export SENTRY_INSTRUMENTATION=1
+export SENTRY_POST_MERGE_AUTO_UPDATE=1
+export SENTRY_SPA_DSN=https://863de587a34a48c4a4ef1a9238fdb0b1@o19635.ingest.sentry.io/5270453
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
+eval "$(direnv hook zsh)"
