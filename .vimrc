@@ -172,6 +172,9 @@ map <C-l> <C-W>l
 " imap <Tab> <C-N> " this is C-P backwards
 " https://thoughtbot.com/blog/vim-you-complete-me
 
+:set completeopt=longest,menuone
+:inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
 " ---------------------------- filetype specifics ----------------------------
 
 autocmd FileType javascript setlocal equalprg=js-beautify\ --stdin
