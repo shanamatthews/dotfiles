@@ -44,6 +44,8 @@ brew install tree
 brew install pyenv
 brew install autoenv
 brew install pandoc
+brew install ripgrep
+brew install fd
 
 # make sure the below env vars are set
 source ~/.zshrc
