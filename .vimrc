@@ -119,7 +119,7 @@ endif
 
 " -------------------------------- shell pane --------------------------------
 
-set termwinsize=12x0   " set terminal pane size (?? shana doesn't know what these #s refer to)
+" set termwinsize=12x0   " set terminal pane size (?? shana doesn't know what these #s refer to)
 set splitbelow         " always split terminal below (?? shana doesn't really get this either)
 
 " ctrl + s opens shell
@@ -166,6 +166,12 @@ map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 
+" ------------------------------ tab completion ------------------------------
+
+imap <Tab> <C-P>
+" imap <Tab> <C-N> " this is C-P backwards
+" https://thoughtbot.com/blog/vim-you-complete-me
+
 " ---------------------------- filetype specifics ----------------------------
 
 autocmd FileType javascript setlocal equalprg=js-beautify\ --stdin
@@ -210,6 +216,13 @@ let g:ale_lint_on_enter = 0
 " Disable auto-detection of virtualenvironments
 let g:ale_virtualenv_dir_names = []
 " Environment variable ${VIRTUAL_ENV} is always used
+
+" ----------------------------------- panes ----------------------------------
+
+map <silent> <leader>pp :vsp<CR>
+
+set splitbelow
+set splitright
 
 " ---------------------------------- plugins ---------------------------------
 
