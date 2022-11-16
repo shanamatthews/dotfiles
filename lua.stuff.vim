@@ -1,4 +1,5 @@
 lua << EOF
+
 require'lspconfig'.pyright.setup{}
 
 -- Use an on_attach function to only map the following keys

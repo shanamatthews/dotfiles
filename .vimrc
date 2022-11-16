@@ -71,17 +71,13 @@ set formatoptions=tcq  " this is the default, consider changing
 
 set autoindent         " automatically indent lines
 
-set tabstop=2          " set tab size
-
 " autoindenting is smart when starting a new line
 " not supported by all languages (maybe mostly just c)
 set smartindent
 
 set expandtab          " replace tabs with spaces
-
-" I don't really know what this does, so leaving it off
-set softtabstop=2
-
+set tabstop=2          " set tab size
+set softtabstop=2 " I don't really know what this does
 set shiftwidth=2       " this is for >> and <<
 
 " makes it so you can delete your inserted spaces as if they were tabs
@@ -129,11 +125,14 @@ map <silent> <C-t> :tabn<CR>
 
 " --------------------------------- commands ---------------------------------
 
+" set leader key
+let mapleader = "\<Space>"
+
 " Allow backspacing over everything in insert mode.
 set backspace=indent,eol,start
 
 " Do not show stupid q: window
-map q: :q
+noremap q: :q
 
 " make & consistent with D and C (yank until the eol)
 nnoremap Y y$
@@ -150,7 +149,7 @@ if !exists(":DiffOrig")
 		  \ | wincmd p | diffthis
 endif
 
-" disable arrow keys BECAUSE I HATE MYSELF
+" disable arrow keys
 noremap <up> :echoerr "Be a good vimmer, use k"
 noremap <down> :echoerr "Be a good vimmer, use j"
 noremap <left> :echoerr "Be a good vimmer, use h"
@@ -222,7 +221,8 @@ let g:ale_virtualenv_dir_names = []
 
 " ----------------------------------- panes ----------------------------------
 
-map <silent> <leader>pp :vsp<CR>
+" idk what this does, so removing it
+" map <silent> <leader>pp :vsp<CR>
 
 set splitbelow
 set splitright
@@ -282,10 +282,9 @@ endif
 " Options for plugins
 autocmd VimEnter * NERDTree    " Start NerdTree on startup & leave cursor in it
 
-" let mapleader = ","
-" nmap <leader>ne :NERDTreeFocus<cr>
+nnoremap <leader>ne :NERDTreeFocus<cr>
 
-map <silent> <C-n> :NERDTreeToggle<CR>
+noremap <silent> <C-n> :NERDTreeToggle<CR>
 
 " ------------------------------ omnicompletion ------------------------------
 
