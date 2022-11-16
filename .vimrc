@@ -80,7 +80,7 @@ set smartindent
 set expandtab          " replace tabs with spaces
 
 " I don't really know what this does, so leaving it off
-set softtabstop=0
+set softtabstop=2
 
 set shiftwidth=2       " this is for >> and <<
 
