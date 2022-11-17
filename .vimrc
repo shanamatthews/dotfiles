@@ -56,7 +56,7 @@ set showmode           " show command/insert mode
 " ------------------------------- text display -------------------------------
 
 set display=lastline   " show as much of last line as possible
-set scrolloff=2        " try to keep some buffer around the cursor
+set scrolloff=4        " try to keep some buffer around the cursor
 
 set number             " activate line numbering
 set relativenumber     " so we have numbers and relative numbers
@@ -64,6 +64,8 @@ set relativenumber     " so we have numbers and relative numbers
 set ruler              " column and row position shown in bottom right
 
 set showmatch          " highlight matching brackets/braces/parens
+
+set signcolumn         " add a left gutter for linting info
 
 " --------------------------------- text wrap --------------------------------
 
@@ -130,7 +132,8 @@ map <silent> <C-t> :tabn<CR>
 " --------------------------------- commands ---------------------------------
 
 " set leader key
-let mapleader = "\<Space>"
+nnoremap <SPACE> <Nop>
+let mapleader = " "
 
 " Allow backspacing over everything in insert mode.
 set backspace=indent,eol,start
@@ -231,6 +234,10 @@ let g:ale_virtualenv_dir_names = []
 set splitbelow
 set splitright
 
+" switch buffers with tab
+:nnoremap <Tab> :bnext<CR>
+:nnoremap <S-Tab> :bprevious<CR>
+
 " ---------------------------------- plugins ---------------------------------
 
 " The matchit plugin makes the % command work better, but it is not backwards
@@ -292,17 +299,31 @@ if filereadable(expand("~/.vim/autoload/plug.vim"))
   " Nerdtree shows hidden files
   let NERDTreeShowHidden=1
 
+  " Airline
+  let g:airline#extensions#tabline#enabled = 1 " buffer list
+
 endif
 
 " Options for plugins
 
 " NerdTree
-autocmd VimEnter * NERDTree    " Start NerdTree on startup & leave cursor in it
-nnoremap <leader>ne :NERDTreeFocus<cr>
-noremap <silent> <C-n> :NERDTreeToggle<CR>
+" Start NERDTree when Vim is started without file arguments.
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
+
+" Exit Vim if NERDTree is the only window remaining in the only tab.
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+
+" Close the tab if NERDTree is the only window remaining in it.
+autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+
+nnoremap <leader>nf :NERDTreeFocus<cr>
+noremap <silent> <leader>nn :NERDTreeToggle<CR>
 
 " Undo tree
 nnoremap <leader>ut :UndotreeToggle<CR>
+
+
 
 " ------------------------------ omnicompletion ------------------------------
 
