@@ -19,6 +19,7 @@ endif
 set noswapfile         " we don't need this annoying thing
 
 set undodir=~/.vim/.undo//
+set undofile
 set backupdir=~/.vim/.backup//
 set directory=~/.vim/.swp//
 
@@ -30,6 +31,9 @@ cmap w!! w !sudo tee > /dev/null %
 
 " replace emojis
 " autocmd BufWritePost *.md silent !toemoji %
+
+" opening a new file with unsaved changes just hides current file
+set hidden
 
 " ------------------------------ buffer, history -----------------------------
 
@@ -90,7 +94,7 @@ set shiftround         " Round indent to multiple of 'shiftwidth'
 set incsearch          " incremental search 
 set ic                 " and case insensitive
 
-set hlsearch           " Switch on highlighting the last used search pattern.
+set nohlsearch           " Switch on highlighting the last used search pattern.
 
 set ignorecase         " ignore case in regular expressions
 set smartcase          " exept when we've used a capital letter explicitly
@@ -250,11 +254,21 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
 \| endif
 
 " only load plugins if Plug is available
-" don't forget to :PlugInstall (in vim) to install plugins
 if filereadable(expand("~/.vim/autoload/plug.vim"))
 
   " junegunn/vim-plug
   call plug#begin('~/.local/share/vim/plugins')
+
+  " if using nvim, also add nvim stuff
+  if has ('nvim')
+    Plug 'nvim-lua/plenary.nvim'
+    Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+    Plug 'neovim/nvim-lspconfig'
+    Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
+    Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
+    Plug 'catppuccin/nvim'
+  endif
 
   " plugins go here
   Plug 'vim-pandoc/vim-pandoc'
@@ -266,6 +280,7 @@ if filereadable(expand("~/.vim/autoload/plug.vim"))
   Plug 'preservim/vim-markdown'
   Plug 'dense-analysis/ale'
   Plug 'vim-airline/vim-airline'
+  Plug 'mbbill/undotree'
 
   call plug#end()
 
@@ -280,11 +295,14 @@ if filereadable(expand("~/.vim/autoload/plug.vim"))
 endif
 
 " Options for plugins
+
+" NerdTree
 autocmd VimEnter * NERDTree    " Start NerdTree on startup & leave cursor in it
-
 nnoremap <leader>ne :NERDTreeFocus<cr>
-
 noremap <silent> <C-n> :NERDTreeToggle<CR>
+
+" Undo tree
+nnoremap <leader>ut :UndotreeToggle<CR>
 
 " ------------------------------ omnicompletion ------------------------------
 
