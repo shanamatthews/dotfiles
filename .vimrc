@@ -320,6 +320,10 @@ autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTa
 nnoremap <leader>nf :NERDTreeFocus<cr>
 noremap <silent> <leader>nn :NERDTreeToggle<CR>
 
+" If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
+autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
+    \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
+
 " Undo tree
 nnoremap <leader>ut :UndotreeToggle<CR>
 
