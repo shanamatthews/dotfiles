@@ -32,6 +32,9 @@ else
     brew update
 fi
 
+# unfuck mac's bash version
+brew install bash
+
 # install utilities I want
 brew install tmux
 brew install glow
