@@ -49,6 +49,7 @@ brew install autoenv
 brew install pandoc
 brew install ripgrep
 brew install fd
+brew install browser-sync
 
 # make sure the below env vars are set
 source ~/.zshrc
@@ -82,4 +83,9 @@ git clone git@github.com:rupa/z.git "$HOME/src/git/z"
 # add if statement for go being installed
 
 go get github.com/rwxrob/cmdbox-pomo/pomo
+
+# node & npm
+# install nvm first
+# https://github.com/nvm-sh/nvm#installing-and-updating
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
 

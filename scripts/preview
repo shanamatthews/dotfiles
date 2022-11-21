@@ -2,6 +2,7 @@
 
 if ! type browser-sync >/dev/null 2>&1; then
   echo 'Need to install browser-sync.'
+  echo 'npm install -g browser-sync'
   exit 1
 fi
 
