@@ -21,6 +21,7 @@ ln -s "$DOTFILES_DIR"/.zshrc ~/.zshrc
 ln -s "$DOTFILES_DIR"/.vimrc ~/.vimrc
 ln -s "$DOTFILES_DIR"/.tmux.conf ~/.tmux.conf
 ln -s "$DOTFILES_DIR"/aliases.zsh ~/aliases.zsh
+ln -s "$DOTFILES_DIR"/.gitconfig ~/.gitconfig
 
 # install homebrew
 which -s brew
