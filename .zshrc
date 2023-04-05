@@ -205,7 +205,7 @@ alias work="timer 30m && terminal-notifier -message 'Pomodoro'\
         -title 'Work Timer is up! Take a Break 😊'\
         -appIcon '~/Pictures/pumpkin.png'\
         -sound Crystal"
-        
+
 alias rest="timer 5m && terminal-notifier -message 'Pomodoro'\
         -title 'Break is over! Get back to work 😬'\
         -appIcon '~/Pictures/pumpkin.png'\
@@ -214,7 +214,7 @@ alias rest="timer 5m && terminal-notifier -message 'Pomodoro'\
 # -------------------------------- work stuff --------------------------------
 
 WORK_CONF_FILE="$HOME/.sentry/.sentry.conf"
-if [[ -f "$WORK_CONF_FILE" ]]; then
+ if [[ -f "$WORK_CONF_FILE" ]]; then
   source "$WORK_CONF_FILE"
 fi
 
@@ -224,3 +224,4 @@ export SENTRY_SPA_DSN=https://863de587a34a48c4a4ef1a9238fdb0b1@o19635.ingest.sen
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
 eval "$(direnv hook zsh)"
+. "$HOME/.cargo/env"
