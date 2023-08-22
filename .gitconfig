@@ -5,3 +5,5 @@
 	email = shana.l.matthews@gmail.com
 [alias]
 	changed = show --pretty=\"format:\" --name-only
+[core]
+	excludesfile = ~/.gitignore
