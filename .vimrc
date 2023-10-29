@@ -19,6 +19,7 @@ endif
 set noswapfile         " we don't need this annoying thing
 
 set undodir=~/.vim/.undo//
+set undofile
 set backupdir=~/.vim/.backup//
 set directory=~/.vim/.swp//
 
@@ -29,7 +30,10 @@ set autoread           " automaticlaly re-read in files that have been chanced
 cmap w!! w !sudo tee > /dev/null %
 
 " replace emojis
-autocmd BufWritePost *.md silent !toemoji %
+" autocmd BufWritePost *.md silent !toemoji %
+
+" opening a new file with unsaved changes just hides current file
+set hidden
 
 " ------------------------------ buffer, history -----------------------------
 
@@ -49,18 +53,19 @@ set ttimeoutlen=100	   " wait up to 100ms after Esc for special key
 
 set showmode           " show command/insert mode
 
-set norelativenumber   " this setting is stupid
-
 " ------------------------------- text display -------------------------------
 
 set display=lastline   " show as much of last line as possible
-set scrolloff=2        " try to keep some buffer around the cursor
+set scrolloff=4        " try to keep some buffer around the cursor
 
 set number             " activate line numbering
+set relativenumber     " so we have numbers and relative numbers
 
 set ruler              " column and row position shown in bottom right
 
 set showmatch          " highlight matching brackets/braces/parens
+
+set signcolumn         " add a left gutter for linting info
 
 " --------------------------------- text wrap --------------------------------
 
@@ -72,17 +77,13 @@ set formatoptions=tcq  " this is the default, consider changing
 
 set autoindent         " automatically indent lines
 
-set tabstop=2          " set tab size
-
 " autoindenting is smart when starting a new line
 " not supported by all languages (maybe mostly just c)
 set smartindent
 
 set expandtab          " replace tabs with spaces
-
-" I don't really know what this does, so leaving it off
-set softtabstop=0
-
+set tabstop=2          " set tab size
+set softtabstop=2 " I don't really know what this does
 set shiftwidth=2       " this is for >> and <<
 
 " makes it so you can delete your inserted spaces as if they were tabs
@@ -92,10 +93,10 @@ set shiftround         " Round indent to multiple of 'shiftwidth'
 
 " --------------------------------- searching --------------------------------
 
-set incsearch          " incremental search 
+set incsearch          " incremental search
 set ic                 " and case insensitive
 
-set hlsearch           " Switch on highlighting the last used search pattern.
+set nohlsearch           " Switch on highlighting the last used search pattern.
 
 set ignorecase         " ignore case in regular expressions
 set smartcase          " exept when we've used a capital letter explicitly
@@ -103,7 +104,7 @@ set smartcase          " exept when we've used a capital letter explicitly
 " Search mappings: These will make it so that going to the next one in a
 " search will center on the line it's found in.
 nnoremap n nzzzv
-nnoremap N Nzzzv 
+nnoremap N Nzzzv
 
 " -------------------------------- mouse stuff -------------------------------
 
@@ -120,16 +121,25 @@ endif
 
 " -------------------------------- shell pane --------------------------------
 
-set termwinsize=12x0   " set terminal pane size (?? shana doesn't know what these #s refer to)
+" set termwinsize=12x0   " set terminal pane size (?? shana doesn't know what these #s refer to)
 set splitbelow         " always split terminal below (?? shana doesn't really get this either)
 
+" ctrl + s opens shell
+map <silent> <C-s> :terminal<CR>
+" ctrl + t goes through tabs
+map <silent> <C-t> :tabn<CR>
+
 " --------------------------------- commands ---------------------------------
+
+" set leader key
+nnoremap <SPACE> <Nop>
+let mapleader = " "
 
 " Allow backspacing over everything in insert mode.
 set backspace=indent,eol,start
 
 " Do not show stupid q: window
-map q: :q
+noremap q: :q
 
 " make & consistent with D and C (yank until the eol)
 nnoremap Y y$
@@ -146,7 +156,7 @@ if !exists(":DiffOrig")
 		  \ | wincmd p | diffthis
 endif
 
-" disable arrow keys BECAUSE I HATE MYSELF
+" disable arrow keys
 noremap <up> :echoerr "Be a good vimmer, use k"
 noremap <down> :echoerr "Be a good vimmer, use j"
 noremap <left> :echoerr "Be a good vimmer, use h"
@@ -156,16 +166,77 @@ inoremap <down> <NOP>
 inoremap <left> <NOP>
 inoremap <right> <NOP>
 
-" change keyboard shortcuts for switching panes
+" navigate with ctrl + directions, instead of ctrl + w + direction
 map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 
+" ------------------------------ tab completion ------------------------------
+
+" imap <Tab> <C-P> " this was cursed
+" imap <Tab> <C-N> " this is C-P backwards
+" https://thoughtbot.com/blog/vim-you-complete-me
+
+:set completeopt=longest,menuone
+:inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
 " ---------------------------- filetype specifics ----------------------------
 
 autocmd FileType javascript setlocal equalprg=js-beautify\ --stdin
 autocmd FileType sh set commentstring=#\ %s
+
+" Shana doesn't know exactly what this does, but needed for vimwiki
+filetype plugin on
+
+" ---------------------------------- linting ---------------------------------
+
+" set pylint linter for python files
+" autocmd FileType python compiler pylint
+
+" automatically execute :make on file write
+" autocmd BufWritePost *.py,*.js silent make! <afile> | silent redraw!
+
+" automatically open the quickfix window
+" autocmd QuickFixCmdPost [^l]* cwindow
+
+" using ALElint
+let g:ale_linters = {
+\  'javascript': ['eslint'],
+\  'python': ['pylint']
+\}
+
+let g:ale_sign_error = '!'
+let g:ale_sign_warning = '*'
+
+let g:ale_set_highlights = 0
+highlight clear ALEErrorSign
+highlight clear ALEWarningSign
+
+" work with airline
+let g:airline#extensions#ale#enabled = 1
+
+" lint only on save
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_insert_leave = 0
+" don't want linters to run on opening a file
+let g:ale_lint_on_enter = 0
+
+" Disable auto-detection of virtualenvironments
+let g:ale_virtualenv_dir_names = []
+" Environment variable ${VIRTUAL_ENV} is always used
+
+" ----------------------------------- panes ----------------------------------
+
+" idk what this does, so removing it
+" map <silent> <leader>pp :vsp<CR>
+
+set splitbelow
+set splitright
+
+" switch buffers with tab
+:nnoremap <Tab> :bnext<CR>
+:nnoremap <S-Tab> :bprevious<CR>
 
 " ---------------------------------- plugins ---------------------------------
 
@@ -184,12 +255,27 @@ if empty(glob(data_dir . '/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
+" autoinstall any plugins that aren't installed
+autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+  \| PlugInstall --sync | source $MYVIMRC
+\| endif
+
 " only load plugins if Plug is available
-" don't forget to :PlugInstall (in vim) to install plugins
 if filereadable(expand("~/.vim/autoload/plug.vim"))
 
   " junegunn/vim-plug
   call plug#begin('~/.local/share/vim/plugins')
+
+  " if using nvim, also add nvim stuff
+  if has ('nvim')
+    Plug 'nvim-lua/plenary.nvim'
+    Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+    Plug 'neovim/nvim-lspconfig'
+    Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
+    Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
+    Plug 'catppuccin/nvim'
+  endif
 
   " plugins go here
   Plug 'vim-pandoc/vim-pandoc'
@@ -197,14 +283,55 @@ if filereadable(expand("~/.vim/autoload/plug.vim"))
   Plug 'sheerun/vim-polyglot'
   Plug 'jez/vim-better-sml'
   Plug 'preservim/nerdtree'
+  Plug 'godlygeek/tabular'
+  Plug 'preservim/vim-markdown'
+  Plug 'dense-analysis/ale'
+  Plug 'vim-airline/vim-airline'
+  Plug 'mbbill/undotree'
 
   call plug#end()
 
   " plugin customization
+
   " disable pandoc folding
   let g:pandoc#modules#disabled = ["folding"]
+
+  " Nerdtree shows hidden files
+  let NERDTreeShowHidden=1
+
+  " Airline
+  let g:airline#extensions#tabline#enabled = 1 " buffer list
 
 endif
 
 " Options for plugins
-autocmd VimEnter * NERDTree    " Start NerdTree on startup & leave cursor in it
+
+" NerdTree
+" Start NERDTree when Vim is started without file arguments.
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
+
+" Exit Vim if NERDTree is the only window remaining in the only tab.
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+
+" Close the tab if NERDTree is the only window remaining in it.
+autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+
+nnoremap <leader>nf :NERDTreeFocus<cr>
+noremap <silent> <leader>nn :NERDTreeToggle<CR>
+
+" If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
+autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
+    \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
+
+" Undo tree
+nnoremap <leader>ut :UndotreeToggle<CR>
+
+
+
+" ------------------------------ omnicompletion ------------------------------
+
+" these broke everything somehow
+" filetype plugin on
+" set omnifunc=syntaxcomplete#Complete
+

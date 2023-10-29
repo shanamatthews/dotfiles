@@ -1,5 +1,6 @@
-# ~/.bashrc: executed by bash(1) for non-login shells.
+# ~/.bashrc: executed by bash(2) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
+bind '"\eOA": history-previous-history'
 # for examples
 
 # If not running interactively, don't do anything
@@ -14,11 +15,17 @@ export EDITOR=vim
 export VISUAL=vim
 export SCRIPTS="$HOME/.local/bin"
 export SNIPPETS="$HOME/.local/snippets"
+export VIMCONFIG="$HOME/.vim"
+export SRC="$HOME/src"
+export GIT="$HOME/src/git"
+export HRULEWIDTH=80
 
 # ------------------------------------ pager -----------------------------------
 # this is how we get colored man pages oooooh so fancy
 # no one honestly knows what most of this does but it does make it pretty
 # these variables are designed so that man will work with them
+
+# this is super broken on my ubuntu machine - why? TODO SHANA FIX
 
 if test -x /usr/bin/lesspipe; then
   export LESSOPEN="| /usr/bin/lesspipe %s";
@@ -46,7 +53,11 @@ if command -v dircolors &> /dev/null; then # check if our system has dircolors (
   fi
 fi
 
+# we also want colored grep output
 alias ls='ls -h --color=auto'              # -h for human-readable output
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
 
 # ------------------------------ bash shell options -----------------------------
 
@@ -63,6 +74,16 @@ export HISTCONTROL=ignoreboth
 export HISTSIZE=5000
 export HISTFILESIZE=10000
 
+# ------------------------------ command history -----------------------------
+
+# we don't need this, bc we just search with / on vim mode
+
+# bind '"\e[A": history-search-backward'
+# bind '"\eOA": history-search-backward'
+# bind '"\e[B": history-search-forward'
+# bind '"\eOB": history-search-forward'
+
+
 # ------------------------------------ prompt ------------------------------------
 
 __ps1() {
@@ -77,9 +98,33 @@ PROMPT_COMMAND="__ps1"
 
 # ------------------------------------ aliases -----------------------------------
 
+# basic ls aliases
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+
+# my personal favies
 alias more='less'
 alias scripts='cd ${SCRIPTS}'
-#!/usr/bin/bash
+alias sz='source ~/.bashrc'       # called sz for historical reasons (using zsh)
+alias ez='vim ~/.bashrc'          # same note
+alias aliases='vim ~/.bashrc'     # in zsh I had a separate aliases file 
+
+alias myip="curl http://ipecho.net/plain; echo"
+alias c=clear
+alias top=htop
+alias shellcheck='function _sc(){ shellcheck -o all $1; }; _sc'
+alias sc='function _sc(){ shellcheck -o all $1; }; _sc'
+alias snippets='cd $SNIPPETS'
+alias scripts='cd $SCRIPTS'
+alias vip='vim -p'
+
+# we're not using this file yet
+
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
 
 # ---------------------------------- functions -----------------------------------
 
@@ -133,8 +178,18 @@ pathprepend "$SNIPPETS"
 # export CDPATH="$SCRIPTS:$CDPATH"
 # export CDPATH=~/.local:"$CDPATH"
 
+
+
 CDPATH=.:\
 "$SCRIPTS":\
 "$SNIPPETS":\
+"$SRC":\
+"$GIT":\
 ~/.local:\
-~
+
+# ------------------------------ configure utils -----------------------------
+
+eval "$(thefuck --alias)"
+
+# ----------------------------------- rust -----------------------------------
+. "$HOME/.cargo/env"
