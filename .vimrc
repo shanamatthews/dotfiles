@@ -156,6 +156,12 @@ inoremap <down> <NOP>
 inoremap <left> <NOP>
 inoremap <right> <NOP>
 
+" change keyboard shortcuts for switching panes
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
+
 " ---------------------------- filetype specifics ----------------------------
 
 autocmd FileType javascript setlocal equalprg=js-beautify\ --stdin
