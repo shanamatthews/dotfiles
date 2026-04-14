@@ -32,7 +32,7 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
-# -------------------------------- vim stuff ---------------------------------
-alias vim=nvim
-alias ev='vim ~/.config/nvim/init.vim'
+# -------------------------------- nvim stuff ---------------------------------
+#alias vim=nvim
+#alias ev='vim ~/.config/nvim/init.vim'
 
