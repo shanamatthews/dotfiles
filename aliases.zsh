@@ -14,10 +14,15 @@ alias vip='vim -p'
 
 alias sz='source ~/.zshrc'
 alias ez='vim ~/.zshrc'
+alias vimrc='vim ~/.vimrc'
 
 alias tx='tmux attach || tmux new -s mysesh'
 
 alias tree='tree | less'
+
+claude () {
+  $HOME/.claude-wrapper "$@"
+}
 
 # ------------------------------ bash ls aliases -----------------------------
 alias ls='ls --color=auto'

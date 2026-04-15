@@ -65,7 +65,7 @@ set ruler              " column and row position shown in bottom right
 
 set showmatch          " highlight matching brackets/braces/parens
 
-set signcolumn         " add a left gutter for linting info
+set signcolumn=yes     " add a left gutter for linting info
 
 " --------------------------------- text wrap --------------------------------
 
