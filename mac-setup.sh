@@ -54,6 +54,9 @@ brew install fd
 brew install browser-sync
 brew install shellcheck
 
+# install GUI apps
+brew install --cask rectangle
+
 # make sure the below env vars are set
 source ~/.zshrc
 
